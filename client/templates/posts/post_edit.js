@@ -20,10 +20,10 @@ Template.postEdit.events({
     //prevent duplicate urls through edit
     Meteor.call('postInsert', postProperties, function(error, result) {
       if (error)
-        alert(error.reason);
+        throwError(error.reason);
 
       if (result.postExists)
-        alert('This link has already been posted');
+        throwError('This link has already been posted');
 
       Router.go('postPage', {_id: currentPostId});
     })
