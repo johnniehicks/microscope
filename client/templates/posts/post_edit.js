@@ -31,6 +31,7 @@ Template.postEdit.events({
     if (errors.title || errors.url)
       return Session.set('postSubmitErrors', errors);*/
 
+    //NOTE original book code
     // Posts.update(currentPostId, {$set: postProperties}, function(error) {
     //   if (error) {
     //     // display the error to the user
@@ -40,6 +41,7 @@ Template.postEdit.events({
     //   }
     // });
 
+    //NOTE I added this code cuz they challenged me to figure it out
     //prevent duplicate urls through edit
     Meteor.call('postInsert', postProperties, function(error, result) {
       if (error)
