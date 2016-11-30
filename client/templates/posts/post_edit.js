@@ -9,14 +9,24 @@ Template.postEdit.events({
       title: $(e.target).find('[name=title]').val()
     }
 
-    Posts.update(currentPostId, {$set: postProperties}, function(error) {
-      if (error) {
-        // display the error to the user
+    // Posts.update(currentPostId, {$set: postProperties}, function(error) {
+    //   if (error) {
+    //     // display the error to the user
+    //     alert(error.reason);
+    //   } else {
+    //     Router.go('postPage', {_id: currentPostId});
+    //   }
+    // });
+    //prevent duplicate urls through edit
+    Meteor.call('postInsert', postProperties, function(error, result) {
+      if (error)
         alert(error.reason);
-      } else {
-        Router.go('postPage', {_id: currentPostId});
-      }
-    });
+
+      if (result.postExists)
+        alert('This link has already been posted');
+
+      Router.go('postPage', {_id: currentPostId});
+    })
   },
 
   'click .delete': function(e) {
