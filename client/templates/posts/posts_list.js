@@ -1,5 +1,1 @@
-Template.postsList.helpers({
-  posts: function() {
-    return Posts.find({}, {sort: {submitted: -1}});
-  }
-});
+// Previously used. Instructed to delete contents, not file
